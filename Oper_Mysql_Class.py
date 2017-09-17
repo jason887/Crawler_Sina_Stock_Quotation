@@ -1,5 +1,6 @@
 import pymysql
 import os
+import platform
 from Comm_Func import *
 
 class MySQL:
@@ -57,7 +58,16 @@ def Get_Param_Info(Config):
                     paramInfo[paramName]=paramValue
     return paramInfo
 
-paramInfo = Get_Param_Info("Config.ini")
+sysType = platform.system()
+
+if sysType == "Windows":
+    configFile = r".\Config.ini"
+elif sysType == "Linux":
+    configFile = r"/my_workspace/python/Oper_Qnap_Transmission/Config.ini"
+elif sysType == "Darwin":  # mac
+    configFile = r"./Config.ini"
+
+paramInfo = Get_Param_Info(configFile)
 
 # 引入mysql操作函数
 mysqlExe = MySQL(
