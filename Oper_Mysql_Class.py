@@ -63,7 +63,7 @@ sysType = platform.system()
 if sysType == "Windows":
     configFile = r".\Config.ini"
 elif sysType == "Linux":
-    configFile = r"/my_workspace/python/Oper_Qnap_Transmission/Config.ini"
+    configFile = r"/my_workspace/python/Crawler_Sina_Stock_Quotation/Config.ini"
 elif sysType == "Darwin":  # mac
     configFile = r"./Config.ini"
 
