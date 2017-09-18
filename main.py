@@ -9,7 +9,7 @@ import math
 import urllib, urllib.request, urllib.error
 import http.cookiejar
 from multiprocessing.pool import Pool
-from Oper_Mysql_Class import mysqlExe
+from Oper_Mysql_Class import mysqlExe, paramInfo
 from Comm_Func import *
 
 # 模拟访问的主机头
@@ -197,14 +197,14 @@ if __name__ == "__main__":
 
     startRunTime = time.clock()  # 记录脚本运行起始时间
 
-    pageMaxRows = 100
+    pageMaxRows = int(paramInfo["PAGE_MAX_RTN_ROWS"])
 
     # node = ["hs_a", "hs_b", "hs_z", "zxqy", "cyb", "shfxjs", "hs_s"]
     stockTypeList = ["sh_a", "sh_b", "sz_a", "sz_b","sh_z","sz_z"]
 
     sinaStockQueryParam = __Get_Sina_Crawker_Param(stockTypeList)
 
-    pool = Pool(processes=6)
+    pool = Pool(processes=int(paramInfo["PROC_NUM"]))
     for queryParam in sinaStockQueryParam:
         pool.apply_async(__Get_Sina_Stock, (queryParam,))  # 启用线程池机制
         # __Get_Sina_Stock(queryParam)
