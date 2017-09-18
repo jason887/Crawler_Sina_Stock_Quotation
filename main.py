@@ -204,7 +204,7 @@ if __name__ == "__main__":
 
     sinaStockQueryParam = __Get_Sina_Crawker_Param(stockTypeList)
 
-    pool = Pool(processes=1)
+    pool = Pool(processes=6)
     for queryParam in sinaStockQueryParam:
         pool.apply_async(__Get_Sina_Stock, (queryParam,))  # 启用线程池机制
         # __Get_Sina_Stock(queryParam)
